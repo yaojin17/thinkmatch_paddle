@@ -1,0 +1,248 @@
+BATCH_SIZE: 8
+PROBLEM:
+  TYPE: 2GM
+  UNSUPERVISED: False
+  RESCALE: [256, 256]
+  FILTER: intersection
+  MAX_PROB_SIZE: -1
+  NUM_GRAPHS: 3
+  NUM_CLUSTERS: 1
+  TEST_ALL_GRAPHS: False
+  TRAIN_ALL_GRAPHS: False
+GRAPH:
+  SRC_GRAPH_CONSTRUCT: tri
+  TGT_GRAPH_CONSTRUCT: fc
+  SYM_ADJACENCY: True
+  PADDING: 23
+TRAIN:
+  EPOCH_ITERS: 2000
+  START_EPOCH: 0
+  NUM_EPOCHS: 20
+  OPTIMIZER: SGD
+  LR: 0.01
+  SEPARATE_BACKBONE_LR: False
+  BACKBONE_LR: 0.01
+  LR_DECAY: 0.1
+  LR_STEP: [5]
+  MOMENTUM: 0.9
+  RLOSS_NORM: 256
+  CLASS: none
+  LOSS_FUNC: perm
+EVAL:
+  EPOCH: 30
+  SAMPLES: 1000
+  CLASS: all
+VOC2011:
+  KPT_ANNO_DIR: data/PascalVOC/annotations/
+  ROOT_DIR: data/PascalVOC/TrainVal/VOCdevkit/VOC2011/
+  SET_SPLIT: data/PascalVOC/voc2011_pairs.npz
+  CLASSES: ['aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car', 'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike', 'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor']
+WILLOW:
+  ROOT_DIR: data/WillowObject/WILLOW-ObjectClass
+  CLASSES: ['Car', 'Duck', 'Face', 'Motorbike', 'Winebottle']
+  KPT_LEN: 10
+  TRAIN_NUM: 20
+  TRAIN_OFFSET: 0
+BACKBONE: VGG16_bn
+GPU: 4
+DATALOADER_NUM: 2
+PRETRAINED_PATH: ./pretrained/paddle_vgg16_ngm_voc.pdparams
+NORM_MEANS: [0.485, 0.456, 0.406]
+NORM_STD: [0.229, 0.224, 0.225]
+CACHE_PATH: data/cache
+MODEL_NAME: vgg16_ngm
+DATASET_NAME: voc
+DATASET_FULL_NAME: PascalVOC
+MODULE: models.NGM.model_pdl
+OUTPUT_PATH: output/vgg16_ngm_voc
+STATISTIC_STEP: 100
+RANDOM_SEED: 123
+FP16: False
+NGM:
+  FEATURE_CHANNEL: 512
+  SK_ITER_NUM: 20
+  SK_EPSILON: 1e-10
+  SK_TAU: 0.05
+  MGM_SK_TAU: 0.005
+  GNN_FEAT: [16, 16, 16]
+  GNN_LAYER: 3
+  GAUSSIAN_SIGMA: 1.0
+  SIGMA3: 1.0
+  WEIGHT2: 1.0
+  WEIGHT3: 1.0
+  EDGE_FEATURE: cat
+  ORDER3_FEATURE: none
+  FIRST_ORDER: True
+  EDGE_EMB: False
+  SK_EMB: 1
+  GUMBEL_SK: 0
+  UNIV_SIZE: -1
+  POSITIVE_EDGES: True
+Loading model parameters from ./pretrained/paddle_vgg16_ngm_voc.pdparams
+Start Evaluation.
+Evaluating class aeroplane: 0/20
+Class aeroplane Iter 100  3.49sample/s
+Class aeroplane: p = 0.4400±0.2785, r = 0.4400±0.2785, f1 = 0.4400±0.2785, cvg = 0.1089
+Class aeroplane norm obj score: 1.0009
+Class aeroplane pred time: 0.2846±0.1121
+Evaluating class bicycle: 1/20
+Class bicycle  Iter 100  4.32sample/s
+Class bicycle: p = 0.6258±0.2513, r = 0.6258±0.2513, f1 = 0.6258±0.2513, cvg = 0.7257
+Class bicycle norm obj score: 1.0017
+Class bicycle pred time: 0.2281±0.0107
+Evaluating class bird: 2/20
+Class bird     Iter 100  6.64sample/s
+Class bird: p = 0.5434±0.3304, r = 0.5434±0.3304, f1 = 0.5434±0.3304, cvg = 0.1420
+Class bird norm obj score: 1.0008
+Class bird pred time: 0.1513±0.0228
+Evaluating class boat: 3/20
+Class boat     Iter 100  8.30sample/s
+Class boat: p = 0.5928±0.3469, r = 0.5928±0.3469, f1 = 0.5928±0.3469, cvg = 0.2515
+Class boat norm obj score: 1.0003
+Class boat pred time: 0.1195±0.0102
+Evaluating class bottle: 4/20
+Class bottle   Iter 100  5.74sample/s
+Class bottle: p = 0.8448±0.2738, r = 0.8448±0.2738, f1 = 0.8448±0.2738, cvg = 0.1401
+Class bottle norm obj score: 1.0006
+Class bottle pred time: 0.1729±0.0032
+Evaluating class bus: 5/20
+Class bus      Iter 100  8.23sample/s
+Class bus: p = 0.7686±0.3296, r = 0.7686±0.3296, f1 = 0.7686±0.3296, cvg = 0.7104
+Class bus norm obj score: 1.0009
+Class bus pred time: 0.1207±0.0085
+Evaluating class car: 6/20
+Class car      Iter 100  7.36sample/s
+Class car: p = 0.6928±0.3018, r = 0.6928±0.3018, f1 = 0.6928±0.3018, cvg = 0.0760
+Class car norm obj score: 1.0004
+Class car pred time: 0.1325±0.0165
+Evaluating class cat: 7/20
+Class cat      Iter 100  4.80sample/s
+Class cat: p = 0.7291±0.2853, r = 0.7291±0.2853, f1 = 0.7291±0.2853, cvg = 0.1964
+Class cat norm obj score: 1.0003
+Class cat pred time: 0.2071±0.0763
+Evaluating class chair: 8/20
+Class chair    Iter 100  5.97sample/s
+Class chair: p = 0.4358±0.2882, r = 0.4358±0.2882, f1 = 0.4358±0.2882, cvg = 0.5013
+Class chair norm obj score: 1.0006
+Class chair pred time: 0.1656±0.0221
+Evaluating class cow: 9/20
+Class cow      Iter 100  3.73sample/s
+Class cow: p = 0.6499±0.2638, r = 0.6499±0.2638, f1 = 0.6499±0.2638, cvg = 0.6606
+Class cow norm obj score: 1.0006
+Class cow pred time: 0.2645±0.0819
+Evaluating class diningtable: 10/20
+Class diningtable: p = 0.4250±0.3459, r = 0.4250±0.3459, f1 = 0.4250±0.3459, cvg = 1.0000
+Class diningtable norm obj score: 1.0019
+Class diningtable pred time: 0.1353±0.0041
+Evaluating class dog: 11/20
+Class dog      Iter 100  4.58sample/s
+Class dog: p = 0.5978±0.2618, r = 0.5978±0.2618, f1 = 0.5978±0.2618, cvg = 0.0928
+Class dog norm obj score: 1.0007
+Class dog pred time: 0.2047±0.0428
+Evaluating class horse: 12/20
+Class horse    Iter 100  4.85sample/s
+Class horse: p = 0.6370±0.2499, r = 0.6370±0.2499, f1 = 0.6370±0.2499, cvg = 0.9495
+Class horse norm obj score: 1.0002
+Class horse pred time: 0.2031±0.0355
+Evaluating class motorbike: 13/20
+Class motorbike Iter 100  6.09sample/s
+Class motorbike: p = 0.6037±0.2660, r = 0.6037±0.2660, f1 = 0.6037±0.2660, cvg = 0.5627
+Class motorbike norm obj score: 1.0009
+Class motorbike pred time: 0.1652±0.0237
+Evaluating class person: 14/20
+Class person   Iter 100  3.69sample/s
+Class person: p = 0.4170±0.2522, r = 0.4170±0.2522, f1 = 0.4170±0.2522, cvg = 0.0827
+Class person norm obj score: 1.0012
+Class person pred time: 0.2603±0.0661
+Evaluating class pottedplant: 15/20
+Class pottedplant Iter 100  8.28sample/s
+Class pottedplant: p = 0.8509±0.2435, r = 0.8509±0.2435, f1 = 0.8509±0.2435, cvg = 0.2061
+Class pottedplant norm obj score: 1.0002
+Class pottedplant pred time: 0.1210±0.0174
+Evaluating class sheep: 16/20
+Class sheep    Iter 100  6.33sample/s
+Class sheep: p = 0.6572±0.2873, r = 0.6572±0.2873, f1 = 0.6572±0.2873, cvg = 0.2957
+Class sheep norm obj score: 1.0002
+Class sheep pred time: 0.1532±0.0273
+Evaluating class sofa: 17/20
+Class sofa: p = 0.5944±0.3361, r = 0.5944±0.3361, f1 = 0.5944±0.3361, cvg = 0.9643
+Class sofa norm obj score: 1.0004
+Class sofa pred time: 0.1387±0.0220
+Evaluating class train: 18/20
+Class train    Iter 100  10.58sample/s
+Class train: p = 0.7725±0.3182, r = 0.7725±0.3182, f1 = 0.7725±0.3182, cvg = 0.6768
+Class train norm obj score: 1.0002
+Class train pred time: 0.0934±0.0052
+Evaluating class tvmonitor: 19/20
+Class tvmonitor Iter 100  9.79sample/s
+Class tvmonitor: p = 0.7456±0.4081, r = 0.7456±0.4081, f1 = 0.7456±0.4081, cvg = 0.2412
+Class tvmonitor norm obj score: 1.0011
+Class tvmonitor pred time: 0.0999±0.0041
+Matching accuracy
+aeroplane: p = 0.4400±0.2785, r = 0.4400±0.2785, f1 = 0.4400±0.2785, cvg = 0.1089
+bicycle: p = 0.6258±0.2513, r = 0.6258±0.2513, f1 = 0.6258±0.2513, cvg = 0.7257
+bird: p = 0.5434±0.3304, r = 0.5434±0.3304, f1 = 0.5434±0.3304, cvg = 0.1420
+boat: p = 0.5928±0.3469, r = 0.5928±0.3469, f1 = 0.5928±0.3469, cvg = 0.2515
+bottle: p = 0.8448±0.2738, r = 0.8448±0.2738, f1 = 0.8448±0.2738, cvg = 0.1401
+bus: p = 0.7686±0.3296, r = 0.7686±0.3296, f1 = 0.7686±0.3296, cvg = 0.7104
+car: p = 0.6928±0.3018, r = 0.6928±0.3018, f1 = 0.6928±0.3018, cvg = 0.0760
+cat: p = 0.7291±0.2853, r = 0.7291±0.2853, f1 = 0.7291±0.2853, cvg = 0.1964
+chair: p = 0.4358±0.2882, r = 0.4358±0.2882, f1 = 0.4358±0.2882, cvg = 0.5013
+cow: p = 0.6499±0.2638, r = 0.6499±0.2638, f1 = 0.6499±0.2638, cvg = 0.6606
+diningtable: p = 0.4250±0.3459, r = 0.4250±0.3459, f1 = 0.4250±0.3459, cvg = 1.0000
+dog: p = 0.5978±0.2618, r = 0.5978±0.2618, f1 = 0.5978±0.2618, cvg = 0.0928
+horse: p = 0.6370±0.2499, r = 0.6370±0.2499, f1 = 0.6370±0.2499, cvg = 0.9495
+motorbike: p = 0.6037±0.2660, r = 0.6037±0.2660, f1 = 0.6037±0.2660, cvg = 0.5627
+person: p = 0.4170±0.2522, r = 0.4170±0.2522, f1 = 0.4170±0.2522, cvg = 0.0827
+pottedplant: p = 0.8509±0.2435, r = 0.8509±0.2435, f1 = 0.8509±0.2435, cvg = 0.2061
+sheep: p = 0.6572±0.2873, r = 0.6572±0.2873, f1 = 0.6572±0.2873, cvg = 0.2957
+sofa: p = 0.5944±0.3361, r = 0.5944±0.3361, f1 = 0.5944±0.3361, cvg = 0.9643
+train: p = 0.7725±0.3182, r = 0.7725±0.3182, f1 = 0.7725±0.3182, cvg = 0.6768
+tvmonitor: p = 0.7456±0.4081, r = 0.7456±0.4081, f1 = 0.7456±0.4081, cvg = 0.2412
+average accuracy: p = 0.6312±0.2959, r = 0.6312±0.2959, f1 = 0.6312±0.2959
+Evaluation completed in 53m 24s
+Normalized Objective Score
+aeroplane = 1.0009
+bicycle = 1.0017
+bird = 1.0008
+boat = 1.0003
+bottle = 1.0006
+bus = 1.0009
+car = 1.0004
+cat = 1.0003
+chair = 1.0006
+cow = 1.0006
+diningtable = 1.0019
+dog = 1.0007
+horse = 1.0002
+motorbike = 1.0009
+person = 1.0012
+pottedplant = 1.0002
+sheep = 1.0002
+sofa = 1.0004
+train = 1.0002
+tvmonitor = 1.0011
+Average Objective Score = 1.0007
+Prediction time
+aeroplane = 0.2846±0.1121
+bicycle = 0.2281±0.0107
+bird = 0.1513±0.0228
+boat = 0.1195±0.0102
+bottle = 0.1729±0.0032
+bus = 0.1207±0.0085
+car = 0.1325±0.0165
+cat = 0.2071±0.0763
+chair = 0.1656±0.0221
+cow = 0.2645±0.0819
+diningtable = 0.1353±0.0041
+dog = 0.2047±0.0428
+horse = 0.2031±0.0355
+motorbike = 0.1652±0.0237
+person = 0.2603±0.0661
+pottedplant = 0.1210±0.0174
+sheep = 0.1532±0.0273
+sofa = 0.1387±0.0220
+train = 0.0934±0.0052
+tvmonitor = 0.0999±0.0041
+average time = 0.1748±0.0718
+gt perm mat cache deleted
